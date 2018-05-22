@@ -195,5 +195,21 @@ namespace DiscordAPI {
 
 			return true;
 		}
+
+		private static async Task MessageReceived(SocketMessage textContent)
+		{
+			SocketUserMessage userMessage = textContent;
+
+
+			if (!message.AuthorIsBot && textContent.StartsWith("!"))
+			{
+				var command = textContent.Remove(0, 1).ToLower();
+				if (!String.IsNullorEmpty(textContent)
+				{
+					await message.Channel.SendMessageAsync(ProcessCommand(command));
+				}
+			}
+			return;
+		}
 	}
 }
