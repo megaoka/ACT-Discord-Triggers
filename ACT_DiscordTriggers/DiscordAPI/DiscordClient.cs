@@ -34,6 +34,7 @@ namespace DiscordAPI {
 
 			try {
 				bot.Ready += Bot_Ready;
+				bot.MessageReceived += MessageReceived;
 				bot.LoginAsync(TokenType.Bot, logintoken);
 				bot.StartAsync();
 			} catch (Exception ex) {
@@ -45,6 +46,7 @@ namespace DiscordAPI {
 
 		public static async Task deInIt() {
 			voiceStream = null;
+			bot.MessageReceived -= MessageReceived;
 			bot.Ready -= Bot_Ready;
 			if (audioClient?.ConnectionState == ConnectionState.Connected) {
 				voiceStream?.Close();
